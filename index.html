@@ -1339,6 +1339,103 @@
         .game-instructions li {
             margin-bottom: 10px;
         }
+        /* Splash Screen Styles */
+        #splash-screen {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        z-index: 9999;
+        opacity: 0;
+        animation: fadeIn 1s forwards, fadeOut 1s forwards 2s;
+        }
+
+        #splash-content h1 {
+        font-size: 2.5em;
+        margin: 0;
+        color: white;
+        font-weight: bold;
+        animation: slideInDown 1.2s ease-out 0.3s both, bounce 2s ease-in-out 1.5s infinite;
+        }
+
+        #splash-content p {
+        font-size: 1.2em;
+        margin-top: 0.5em;
+        color: white;
+        animation: slideInUp 1.2s ease-out 0.6s both, pulse 2s ease-in-out 1.8s infinite;
+        }
+
+        /* Watermark Styles */
+        #watermark {
+        position: fixed;
+        bottom: 10px;
+        right: 10px;
+        font-size: 14px;
+        color: white;
+        opacity: 0.5;
+        z-index: 999;
+        pointer-events: none;
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+        from { opacity: 0; }
+        to { opacity: 1; }
+        }
+
+        @keyframes fadeOut {
+        from { opacity: 1; }
+        to { opacity: 0; }
+        }
+
+        @keyframes slideInDown {
+        from {
+            opacity: 0;
+            transform: translateY(-50px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        }
+
+        @keyframes slideInUp {
+        from {
+            opacity: 0;
+            transform: translateY(50px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        }
+
+        @keyframes bounce {
+        0%, 20%, 50%, 80%, 100% {
+            transform: translateY(0);
+        }
+        40% {
+            transform: translateY(-10px);
+        }
+        60% {
+            transform: translateY(-5px);
+        }
+        }
+
+        @keyframes pulse {
+        0%, 100% {
+            transform: scale(1);
+        }
+        50% {
+            transform: scale(1.05);
+        }
+        }
 
         /* Responsive design for instructions */
         @media (max-width: 768px) {
@@ -1367,6 +1464,17 @@
     </style>
 </head>
 <body>
+    <!-- Splash Screen -->
+    <div id="splash-screen">
+        <div id="splash-content">
+        <h1>The Ezzoo Way</h1>
+        <p>ABC & Numbers Learning Game Bundle (Ages 3–6)</p>
+        </div>
+    </div>
+    
+    <!-- Persistent Watermark -->
+    <div id="watermark">The Ezzoo Way</div>
+  
     <!-- Main Hub Screen -->
     <div id="mainHub" class="container">
         <header class="welcome-header">
@@ -1676,6 +1784,10 @@
     </div>
 
     <script>
+                // Remove splash after animation
+        setTimeout(() => {
+            document.getElementById('splash-screen').style.display = 'none';
+        }, 3000); // total time = fade in (1s) + hold (1s) + fade out (1s)
         // Navigation functions
         function showMemoryGame() {
             // Stop all audio from other games before switching
