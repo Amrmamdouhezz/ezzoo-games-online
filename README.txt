@@ -61,7 +61,7 @@ Download the ZIP file from your account
 
 Extract all files to one folder
 
-Open the included launcher file in your browser to play offline
+Open the included launcher file (simple-launcher.HTML) in your browser to play offline
 
 TECHNICAL DETAILS
 
